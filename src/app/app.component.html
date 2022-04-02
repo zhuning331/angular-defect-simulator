@@ -1,16 +1,15 @@
 <mat-grid-list cols="3" rowHeight="33vh">
   <mat-grid-tile colspan="1" rowspan="3">
-    <app-defect-list style="width: 80%"></app-defect-list>
+    <app-defect-list [defects]="defects" style="width: 80%"></app-defect-list>
   </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="2">
-    <mat-card>
-      <app-defect-canvas></app-defect-canvas>
-    </mat-card>
+    <app-defect-canvas
+      [width]="defectService.panel.width"
+      [height]="defectService.panel.height"
+      [defects]="defects"
+    ></app-defect-canvas>
   </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="1">
-    <mat-card>
-      <mat-card-subtitle>uuid: 2, x: 2, y: 2</mat-card-subtitle>
-      <app-defect-controller></app-defect-controller>
-    </mat-card>
+    <app-defect-controller></app-defect-controller>
   </mat-grid-tile>
 </mat-grid-list>
