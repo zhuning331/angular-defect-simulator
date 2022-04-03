@@ -81,6 +81,7 @@ export class DefectCanvasComponent implements OnInit, OnDestroy {
 
   onSelectCircle(circle: CoreShapeComponent): void {
     this.defectService.selectedDefect = circle.getConfig().defect;
+    document.getElementsByClassName('defect-container')[0].scroll(0, 48 * +this.defectService.selectedDefect!.uuid);
     this.defectService.broadcastDefect({
       type: 'select',
       payload: this.defectService.selectedDefect!
