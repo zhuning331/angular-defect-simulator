@@ -1,3 +1,13 @@
+.defect-info {
+  display: flex;
+  justify-content: space-around;
+}
+
 .defect-slider {
   width: 160px;
+}
+
+.defect-slider-label {
+  display: flex;
+  justify-content: space-between;
 }

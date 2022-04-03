@@ -1,4 +1,30 @@
 <mat-card>
-  <mat-card-subtitle>uuid: 1　x: 2　y: 2</mat-card-subtitle>
-  <mat-slider class="defect-slider" min="10" max="100" step="1" value="50"></mat-slider>
+  <ng-container *ngIf="defectService.selectedDefect">
+    <mat-card-subtitle>
+      <div class="defect-info">
+        <span>uuid: {{ defectService.selectedDefect?.uuid }}</span>
+        <span>x: {{ defectService.selectedDefect?.x }}</span>
+        <span>y: {{ defectService.selectedDefect?.y }}</span>
+      </div>
+    </mat-card-subtitle>
+    <mat-slider
+      thumbLabel
+      [displayWith]="formatLabel"
+      class="defect-slider"
+      min="10"
+      max="100"
+      step="1"
+      [(ngModel)]="defectService.selectedDefect.severity"
+      (change)="onSliderChange()"
+    ></mat-slider>
+    <mat-card-subtitle>
+      <div class="defect-slider-label">
+        <span>10</span>
+        <span>100</span>
+      </div>
+    </mat-card-subtitle>
+  </ng-container>
+  <ng-container *ngIf="!defectService.selectedDefect">
+    <mat-card-subtitle>Please select defect</mat-card-subtitle>
+  </ng-container>
 </mat-card>

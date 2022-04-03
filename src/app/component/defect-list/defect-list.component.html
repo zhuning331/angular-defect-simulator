@@ -21,8 +21,9 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr
         mat-row
-        (click)="clickedRows.add(row)"
-        [class.defect-row-is-clicked]="clickedRows.has(row)"
+        (click)="onSelectRow(row)"
+        (mouseover)="onHoverRow(row)"
+        [class.defect-row-is-clicked]="row.uuid === defectService.selectedDefect?.uuid"
         *matRowDef="let row; columns: displayedColumns;"
     ></tr>
   </table>

@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { I_Defect } from '../interface/defect';
 import { I_Panel } from '../interface/panel';
+import { I_MsgContent } from '../interface/msg-content';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DefectService {
   panel: I_Panel = {width: 600, height: 300};
+  selectedDefect?: I_Defect;
+  defectSubject = new Subject<any>();
 
   constructor() { }
 
@@ -23,7 +26,15 @@ export class DefectService {
     return of(defects);
   }
 
-  getRandom(min: number, max: number){
+  getRandom(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
+
+  broadcastDefect(msgContent: I_MsgContent) {
+    this.defectSubject.next(msgContent);
+  }
+
+  getDefectObservable() {
+    return this.defectSubject.asObservable();
+  }
 }

@@ -1,3 +1,13 @@
-<mat-card>
-  <canvas #canvas [width]="width" [height]="height"></canvas>
+<mat-card class="konva-container">
+  <ko-stage [config]="configStage">
+    <ko-layer #layer>
+      <ko-circle
+        *ngFor="let configCircle of configCircles"
+        [config]="configCircle"
+        (click)="onSelectCircle($event)"
+        (mouseover)="onHoverCircle($event, true)"
+        (mouseout)="onHoverCircle($event, false)"
+      ></ko-circle>
+    </ko-layer>
+  </ko-stage>
 </mat-card>
