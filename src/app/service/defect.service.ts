@@ -10,7 +10,7 @@ import { I_MsgContent } from '../interface/msg-content';
 export class DefectService {
   panel: I_Panel = {width: 600, height: 300};
   selectedDefect?: I_Defect;
-  defectSubject = new Subject<any>();
+  defectSubject = new Subject<I_MsgContent>();
 
   constructor() { }
 
