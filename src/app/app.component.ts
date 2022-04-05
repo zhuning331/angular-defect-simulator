@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DefectService } from './service/defect.service';
 import { I_Defect } from './interface/defect';
+import { I_Panel } from './interface/panel';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,13 @@ import { I_Defect } from './interface/defect';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  panel: I_Panel = {width: 600, height: 300};
   defects: I_Defect[] = [];
 
   constructor(
-    public defectService: DefectService
+    private defectService: DefectService
   ) {
-    this.defectService.getDefects().subscribe((res: I_Defect[]) => (this.defects = res));
+    this.defectService.getDefects(this.panel.width, this.panel.height)
+      .subscribe((res: I_Defect[]) => (this.defects = res));
   }
 }
